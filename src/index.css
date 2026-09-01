@@ -1,0 +1,178 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Pretendard', 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0B192C;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #008485;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8FD1B3;
+}
+
+/* ============================================================
+   A4 Print & PDF Output Engine Optimization
+   ============================================================ */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 10mm 12mm;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  body {
+    background-color: #ffffff !important;
+    color: #0f172a !important;
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+
+  /* Hide screen-only interactive & floating UI */
+  .no-print,
+  #scroll-progress,
+  #top-button,
+  #nav-print-btn,
+  header,
+  nav,
+  .print-hide,
+  button:not(.print-include) {
+    display: none !important;
+  }
+
+  /* Fix Chrome/Safari background-clip:text PDF white box bug */
+  .bg-clip-text,
+  [class*="bg-clip-text"],
+  .text-transparent {
+    -webkit-background-clip: border-box !important;
+    background-clip: border-box !important;
+    -webkit-text-fill-color: #8FD1B3 !important;
+    color: #8FD1B3 !important;
+    background: transparent !important;
+  }
+
+  /* Dark Sections in Print (Hero, Highlights, Stage 3) */
+  #hero {
+    background: #0B192C !important;
+    color: #ffffff !important;
+    padding-top: 1.5rem !important;
+    padding-bottom: 2rem !important;
+    border-radius: 0.75rem !important;
+    margin-bottom: 1.5rem !important;
+    page-break-after: avoid !important;
+  }
+
+  #hero h1,
+  #hero h2,
+  #hero h3,
+  #hero .text-white {
+    color: #ffffff !important;
+  }
+
+  #hero p,
+  #hero .text-slate-300 {
+    color: #cbd5e1 !important;
+  }
+
+  #hero .text-slate-400 {
+    color: #94a3b8 !important;
+  }
+
+  #hero .bg-slate-900\/80,
+  #hero [class*="bg-slate-900"] {
+    background: #0f172a !important;
+    border: 1px solid #334155 !important;
+  }
+
+  /* Ensure all project cards and items are visible when printing */
+  .project-card-wrapper {
+    display: block !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    margin-bottom: 2rem !important;
+  }
+
+  /* Force open all accordion contents in print */
+  .project-accordion-body {
+    display: block !important;
+    max-height: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    padding: 0.75rem 1rem !important;
+    border-top: 1px solid #e2e8f0 !important;
+    background-color: #f8fafc !important;
+  }
+
+  /* Accordion chevron icons hide in print */
+  .accordion-toggle-icon {
+    display: none !important;
+  }
+
+  /* High contrast for Stage 3 & Dark Cards in Projects */
+  .print-dark-card {
+    background: #0B192C !important;
+    color: #ffffff !important;
+    border: 1px solid #1e293b !important;
+    border-radius: 0.75rem !important;
+  }
+
+  .print-dark-card h4,
+  .print-dark-card h5,
+  .print-dark-card .text-white {
+    color: #ffffff !important;
+  }
+
+  .print-dark-card .text-slate-100,
+  .print-dark-card .text-slate-200 {
+    color: #f1f5f9 !important;
+  }
+
+  .print-dark-card .text-slate-300 {
+    color: #cbd5e1 !important;
+  }
+
+  .print-dark-card .text-slate-400 {
+    color: #94a3b8 !important;
+  }
+
+  /* Page Break Control */
+  .page-break-avoid,
+  .project-card,
+  .strength-card,
+  .experience-card,
+  article,
+  section {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* Remove heavy screen drop shadows */
+  .shadow-sm, .shadow-md, .shadow-lg, .shadow-xl, .shadow-2xl {
+    box-shadow: none !important;
+  }
+}
+
